@@ -6,6 +6,7 @@ using UnityEngine;
 public class MouseMovement : MonoBehaviour
 {
     private Vector3 mousePosition;
+    [SerializeField] private float _correctionGun;
     void Update()
     {
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -16,7 +17,7 @@ public class MouseMovement : MonoBehaviour
         Vector3 difference = mousePosition - transform.position;
         difference.Normalize();
         // вычисляемый необходимый угол поворота
-        float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg + _correctionGun;
         // Применяем поворот вокруг оси Z
         transform.rotation = Quaternion.Euler(0f, 0f, rotation_z);
     }
