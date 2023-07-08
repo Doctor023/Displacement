@@ -12,7 +12,7 @@ public class CharacterMovement : MonoBehaviour
     private Vector2 _movement;
     private void Start()
     {
-        _feetAnimator = _feet.GetComponent<Animator>();
+        _feetAnimator = _feet.GetComponent<Animator>(); // work with feet's animation
     }
 
     void FixedUpdate()
@@ -21,19 +21,17 @@ public class CharacterMovement : MonoBehaviour
         Movement();        
         if (_movement.magnitude > 0)
         {
-            Debug.Log("Move true");
             _feetAnimator.SetBool("Move", true);
         }
         else
         {
-            Debug.Log("Move false");
             _feetAnimator.SetBool("Move", false);
         }
         if (_movement.magnitude > 1)
         {
             _movement.Normalize();
         }      
-        transform.Translate(_movement * _speed);
+        transform.Translate(_movement * _speed, Space.World);
     }
     void Movement()
     {
