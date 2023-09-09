@@ -30,23 +30,23 @@ public class CharacterMovement : MonoBehaviour
         _mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         _movement = new Vector3(0, 0);
         Movement();
-        if (_movement.magnitude > 1) // нормализация вектора передвижения при движении по диагонали
+        if (_movement.magnitude > 1) 
         {
             _movement.Normalize();
         }
-        transform.Translate(_movement * _speed, Space.World); // передвижение персонажа
-        if (_movement.magnitude == 0) // персонаж стоит
+        transform.Translate(_movement * _speed, Space.World);
+        if (_movement.magnitude == 0) // if character stop
         {
-            _feetAnimator.SetBool("Move", false); // останавливается анимация движения ног
-            _feetTransform.rotation = _bodyTransform.rotation; // позиция ног = позиции направления тела
+            _feetAnimator.SetBool("Move", false); // stop move animation
+            _feetTransform.rotation = _bodyTransform.rotation; // view's rotation == feet's rotation
         }
-        if (_movement.magnitude > 0)// персонаж бежит
+        if (_movement.magnitude > 0) // if character run
         {
-            _feetAnimator.SetBool("Move", true); // запускается анимация движения ног
-            FeetRotation(); // запускается метод вращения ног персонажа
+            _feetAnimator.SetBool("Move", true); // start move animation
+            FeetRotation(); // view's rotation == mouse rotation
         }
     }
-    void Movement() // определение вектора движения
+    void Movement() // direction of movement
     {
         if (Input.GetKey(KeyCode.D))
         {
@@ -67,7 +67,7 @@ public class CharacterMovement : MonoBehaviour
     }
     void FeetRotation()
     {
-        float zAngle = Mathf.Atan2(_movement.y, _movement.x) * Mathf.Rad2Deg; // определяется градус поворота для ног
-        _feetTransform.rotation = Quaternion.Euler(0, 0, zAngle);
+        float zAngle = Mathf.Atan2(_movement.y, _movement.x) * Mathf.Rad2Deg; 
+        _feetTransform.rotation = Quaternion.Euler(0, 0, zAngle); // feet's direction == movement direction
     }
 }
