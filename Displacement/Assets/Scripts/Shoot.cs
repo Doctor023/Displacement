@@ -30,9 +30,4 @@ public class Shoot : MonoBehaviour
     {
         _animator.SetBool("Shoot", false);
     }
-
-    IEnumerator ShootDelay() // set the delay after the spot
-    {
-        yield return new WaitForSeconds(_shootDelay);
-    } 
 }

@@ -11,7 +11,7 @@ public class MouseMovement : MonoBehaviour // rotate character to mouse position
     {
         Collider2D collider = Physics2D.OverlapPoint(_mousePosition);
         bool mouseMovement = true;
-        if (collider != null && collider.gameObject.CompareTag("TurningPoint"))
+        if (collider != null && collider.gameObject.CompareTag("TurningPoint")) // stop mouse movement when mouse on player
         {
             mouseMovement = false;
         }

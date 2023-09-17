@@ -26,7 +26,6 @@ public class CharacterMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.DrawLine(_feetTransform.position, _feetTransform.position + _feetTransform.TransformDirection(Vector3.right) * 5);
         _mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         _movement = new Vector3(0, 0);
         Movement();
